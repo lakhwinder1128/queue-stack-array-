@@ -1,1 +1,29 @@
-https://practice.geeksforgeeks.org/problems/sort-a-stack/1#
+void insert(stack<int>&s,int& e){
+    //given s is sorted already 
+    if(s.empty()){s.push(e);
+                return ;}
+     if(s.top()>e){
+         int t=s.top();
+         s.pop();
+         insert(s,e);
+         s.push(t);
+     }
+     else s.push(e);
+}
+
+void SortedStack :: sort()
+{
+   //Your code here
+     
+   // sorts(s);
+    
+    if(s.empty())return ;
+    if(s.size()==1)return ;
+    int x=s.top();
+    s.pop();
+    sort();
+    insert(s,x);
+    
+   
+   
+}
