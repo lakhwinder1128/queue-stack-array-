@@ -1,0 +1,30 @@
+ *****method1 == 2 stack method******************
+ int findMaxLen(string s) {
+        // code here
+        stack <int>idx;
+        stack<char>ch;
+        idx.push(-1);
+        int n=s.size();
+        int ans=0;
+        for(int i=0;i<n;i++){
+            if(s[i]=='('){
+                ch.push('(');
+                idx.push(i);
+            }
+            else{
+                if(ch.size()){ch.pop();
+                idx.pop();
+                 ans=max(ans,i-idx.top());
+                    
+                }
+                
+                else{
+                    idx.push(i);
+                }
+            }
+        }
+        return ans;
+    }
+    
+    ************1 stack method*******************
+    
