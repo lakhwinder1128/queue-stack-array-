@@ -13,3 +13,5 @@ https://practice.geeksforgeeks.org/problems/sort-a-stack/1#
 https://leetcode.com/problems/longest-valid-parentheses/submissions/
 
 **https://practice.geeksforgeeks.org/problems/get-minimum-element-from-stack/1/#******
+
+**https://practice.geeksforgeeks.org/problems/first-non-repeating-character-in-a-stream1216/1**
