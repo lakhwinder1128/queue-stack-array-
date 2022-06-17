@@ -1,0 +1,25 @@
+3 methods
+O(n^2), front-rear   ->-> when front ==rear stop  --> take 2 traversal in worst case,//3 methods same front rear keep track of deficit (-ve), reached end check if bal+def<0=> return -1;
+
+
+/////////////////////////////optimised approach.//////////////////////////
+ int tour(petrolPump p[],int n)
+    {
+       //Your code here
+       int start=0;
+       int deficit=0;
+       int balance=0;
+       for(int i=0;i<n;i++){
+           balance=balance+p[i].petrol-p[i].distance;
+           if(balance<0){start=i+1;
+                      deficit=deficit+balance;
+               balance=0;
+              }
+            else{
+               ///                      
+          }
+          
+       }
+       if(deficit+balance<0)return -1;
+       else return start;
+    }
