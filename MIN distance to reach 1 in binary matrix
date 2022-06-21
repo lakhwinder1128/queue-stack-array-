@@ -1,0 +1,61 @@
+  bool isvalid(int row,int col,vector<vector<int>>&grid){
+        int n=grid.size();
+        int m=grid[0].size();
+        if(row<0||row>=n||col<0||col>=m)return false;
+        else return true;
+    }
+	vector<vector<int>>nearest(vector<vector<int>>grid)
+	{
+	    // Code here
+	     int n=grid.size();
+        int m=grid[0].size();
+	    vector<vector<int>>ans(n,vector<int>(m,-1));
+	    
+	    queue<pair<int,int>>q;
+	    int one=0;
+	    for(int i=0;i<n;i++){
+	        for(int j=0;j<m;j++){
+	            if(grid[i][j]==1){q.push({i,j});
+	                    ans[i][j]=0;
+	                one=1;
+	            }
+	            else ans[i][j]=INT_MAX;
+	        }
+	    }
+	    if(one==0)return ans;
+	    int level=0;
+	    while(q.size()){
+	        
+	       level++;
+	        int size=q.size();
+	        for(int i=0;i<size;i++){
+	             auto p=q.front();
+	        int row=p.first;
+	        int col=p.second;
+	        q.pop();
+	        if(isvalid(row-1,col,grid)&&grid[row-1][col]==0){
+	            grid[row-1][col]=1;
+	            ans[row-1][col]=min(ans[row-1][col],level);
+	            q.push({row-1,col});
+	        }
+	         if(isvalid(row+1,col,grid)&&grid[row+1][col]==0){
+	            grid[row+1][col]=1;
+	            ans[row+1][col]=min(ans[row+1][col],level);
+	            q.push({row+1,col});
+	        }
+	         if(isvalid(row,col-1,grid)&&grid[row][col-1]==0){
+	            grid[row][col-1]=1;
+	            ans[row][col-1]=min(ans[row][col-1],level);
+	            q.push({row,col-1});
+	        }
+	         if(isvalid(row,col+1,grid)&&grid[row][col+1]==0){
+	            grid[row][col+1]=1;
+	            ans[row][col+1]=min(ans[row][col+1],level);
+	            q.push({row,col+1});
+	        }
+	        }
+	        
+	    }
+	    
+	    return ans;
+	}
