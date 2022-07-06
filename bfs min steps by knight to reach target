@@ -1,0 +1,47 @@
+ bool isvalid(int i,int j,int n,vector<vector<int>>&visited){
+     if(i>=0&&j>=0&&i<n&&j<n&&visited[i][j]==-1)return true;
+     else return false;
+    }
+	int minStepToReachTarget(vector<int>&knight,vector<int>&target,int n)
+	{
+	    // Code here
+	   vector<vector<int>>visited(n,vector<int>(n,-1));
+	    int sy=knight[0]-1;
+	    int sx=knight[1]-1;
+	    
+	    int ey=target[0]-1;
+	    int ex=target[1]-1;
+	    queue<pair<int,int>>q;
+	    q.push({sy,sx});
+	    visited[sy][sx]=1;
+	    int ans=0;
+	    int flag=0;
+	    while(q.size()){
+	        int size=q.size();
+	        for(int i=0;i<size;i++){
+	            int first=q.front().first;
+	            int second=q.front().second;
+	            q.pop();
+	            if(first==ey&&second==ex)flag=1;
+	            if(isvalid(first+1,second+2,n,visited)){q.push({first+1,second+2});
+	                                                                            visited[first+1][second+2]=1;}
+	            if(isvalid(first-1,second+2,n,visited)){q.push({first-1,second+2});
+	            visited[first-1][second+2]=1;}
+	            if(isvalid(first-1,second-2,n,visited)){q.push({first-1,second-2});
+    	            visited[first-1][second-2]=1;}
+	            if(isvalid(first+1,second-2,n,visited)){q.push({first+1,second-2});
+	            visited[first+1][second-2]=1;}
+	            if(isvalid(first+2,second+1,n,visited)){q.push({first+2,second+1});
+	            visited[first+2][second+1]=1;}
+	            if(isvalid(first-2,second+1,n,visited)){q.push({first-2,second+1});
+	            visited[first-2][second+1]=1;}
+	            if(isvalid(first-2,second-1,n,visited)){q.push({first-2,second-1});
+	            visited[first-2][second-1]=1;}
+	            if(isvalid(first+2,second-1,n,visited)){q.push({first+2,second-1});
+	            visited[first+2][second-1]=1;}
+	        } 
+	        ans++;
+	        if(flag==1)break;
+	    }
+	    return ans-1;
+	}
