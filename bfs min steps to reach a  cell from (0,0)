@@ -1,0 +1,41 @@
+bool isvalid(int row,int col,int n,int m){
+      if(row<0||col<0||row>=n||col>=m)return false;
+      return true;
+  }
+    int shortestDistance(int n, int m, vector<vector<int>> a, int x, int y) {
+         queue<pair<int,pair<int,int>>>q;
+         vector<vector<int>>vis;
+         vector<int>v(m,0);
+         for(int i=0;i<n;i++){
+             vis.push_back(v);
+         }
+         if(a[0][0]==0)return -1;
+         q.push({0,{0,0}});
+         vis[0][0]=1;
+        // int count=0;
+         while(q.size()){
+             int row=q.front().second.first;
+             int col=q.front().second.second;
+             int count=q.front().first;
+             if(row==x&&col==y)return count;
+             q.pop();
+             if(isvalid(row+1,col,n,m)&&a[row+1][col]==1&&vis[row+1][col]==0){
+                 q.push({count+1,{row+1,col}});
+                 vis[row+1][col]=1;
+             }
+             if(isvalid(row,col+1,n,m)&&a[row][col+1]==1&&vis[row][col+1]==0){
+                 q.push({count+1,{row,col+1}});
+                 vis[row][col+1]=1;
+             }
+             if(isvalid(row-1,col,n,m)&&a[row-1][col]==1&&vis[row-1][col]==0){
+                 q.push({count+1,{row-1,col}});
+                 vis[row-1][col]=1;
+             }
+             if(isvalid(row,col-1,n,m)&&a[row][col-1]==1&&vis[row][col-1]==0){
+                 q.push({count+1,{row,col-1}});
+                 vis[row][col-1]=1;
+             }
+             
+         }
+         return -1;
+    }
