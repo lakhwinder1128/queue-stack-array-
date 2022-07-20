@@ -1,0 +1,68 @@
+ bool isvalid(int row,int col,int n,int m){
+        if(row<0||row>=n||col<0||col>=m)return false;
+        return true;
+    }
+    bool is_Possible(vector<vector<int>>& grid) 
+    {
+        //code here
+         int n=grid.size();
+        int m=grid[0].size();
+        queue<pair<int,int>>q;
+        int flag=0;
+        vector<vector<int>>vis;
+         vector<int>v(m,0);
+          for(int i=0;i<grid.size();i++){
+            vis.push_back(v);
+        }
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(grid[i][j]==1){
+                    q.push({i,j});
+                  //  cout<<i<<" "<<j<<"ij"<<endl;
+                    vis[i][j]=1;
+                    flag=1;
+                    break;
+                }
+                
+            }
+            if(flag==1)break;
+        }
+        
+       
+        
+      
+       
+          while(q.size()){
+              int row=q.front().first;
+              int col=q.front().second;
+              q.pop();
+             //cout<<row<<" "<<col<<endl;
+            //  if(grid[row][col+1]==2)return true;
+            //  if(grid[row][col-1]==2)return true;
+            //  if(grid[row+1][col]==2)return true;
+            //  if(grid[row-1][col]==2)return true;
+              if(isvalid(row+1,col,n,m)&&(grid[row+1][col]==3||grid[row+1][col]==2)&&vis[row+1][col]==0){
+                  vis[row+1][col]=1;
+                  q.push({row+1,col});
+                   if(grid[row+1][col]==2)return true;
+              }
+               if(isvalid(row-1,col,n,m)&&(grid[row-1][col]==3||grid[row-1][col]==2)&&vis[row-1][col]==0){
+                  vis[row-1][col]=1;
+                  q.push({row-1,col});
+                    if(grid[row-1][col]==2)return true;
+              }
+               if(isvalid(row,col+1,n,m)&&(grid[row][col+1]==3||grid[row][col+1]==2)&&vis[row][col+1]==0){
+                  vis[row][col+1]=1;
+                  q.push({row,col+1});
+                  
+                     if(grid[row][col+1]==2)return true;
+              }
+               if(isvalid(row,col-1,n,m)&&(grid[row][col-1]==3||grid[row][col-1]==2)&&vis[row][col-1]==0){
+                  vis[row][col-1]=1;
+                  q.push({row,col-1});
+                    if(grid[row][col-1]==2)return true;
+              }
+          }
+          return false;
+          
+    }
