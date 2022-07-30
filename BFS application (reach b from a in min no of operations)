@@ -1,0 +1,44 @@
+ you can do a=a*x or a=a-1;
+ 
+ 
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+
+int a,b,x;
+cin>>a>>b>>x;
+int count=0;
+queue<pair<int,int>>q;
+q.push({a,0});
+int ans=0;
+unordered_map<int,int>vis;
+vis[a]=1;
+while(q.size()){
+    
+    int y=q.front().first;
+    int level=q.front().second;
+   // cout<<level<<endl;
+    if(y==b){ans=level;
+    break;}
+    q.pop();
+   vis[y]=1;
+   if(vis.find(y*x)==vis.end()){
+    q.push({y*x,level+1});
+    vis[y*x]=1;
+    if(y*x==b){
+        ans=level+1;
+        break;
+    }
+   }
+   if(vis.find(y-1)==vis.end()){
+    q.push({y-1,level+1});
+    vis[y-1]==1;
+    if(y-1==b){
+        ans=level+1;
+        break;
+    }
+   }
+}
+cout<<ans<<endl;
+    return 0;
+}
