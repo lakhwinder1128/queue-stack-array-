@@ -1,0 +1,28 @@
+// Map/tie index with elements of answer array and put indexes in sorted order in queue.......
+
+class Solution {
+public:
+    vector<int> deckRevealedIncreasing(vector<int>& deck) {
+        queue<int>q;
+        int n=deck.size();
+        for(int i=0;i<n;i++){
+            q.push(i);
+        }
+        sort(deck.begin(),deck.end());
+         
+        vector<int>ans(n,0);
+        int ind=0;
+        for(int i=0;i<n;i++){
+            
+                ans[q.front()]=deck[ind];
+                q.pop();
+                ind++;
+                if(q.size()){
+                q.push(q.front());
+                q.pop();
+                }
+ 
+        }
+            return ans;
+    }
+};
