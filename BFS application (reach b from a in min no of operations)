@@ -1,4 +1,5 @@
- you can do a=a*x or a=a-1;
+//////think_------- can we use dijkshtra?
+you can do a=a*x or a=a-1;
  
  
 #include<bits/stdc++.h>
